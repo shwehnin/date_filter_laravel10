@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $query = Employee::query();
         $dateFilter = $request->date_filter;
@@ -42,9 +42,9 @@ class EmployeeController extends Controller
                 break;
             case 'last_year':
                 $query->whereYear('created_at',Carbon::now()->subYear()->year);
-                break;                       
+                break;
         }
-            
+
         $employees = $query->get();
 
         return response()->view('index',compact('employees','dateFilter'));
